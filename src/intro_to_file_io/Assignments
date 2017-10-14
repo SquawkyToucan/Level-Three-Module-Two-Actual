@@ -6,7 +6,7 @@ COMPLETED!
 COMPLETED!
 3. Create a program that adds a copyright notice to all the .java files in your Level 3 repositories (e.g. //Copyright © 2017 by Bill Jobs)
    It is highly recommend that you test your program thoroughly with junk files before running it on your actual work.
-   
+
 4. Make a to-do list tracker:
 	Create a window with four buttons: add task, remove task, save, and load.
 	The add task button will display a JOptionPane to get a task from the user and add it to the list.

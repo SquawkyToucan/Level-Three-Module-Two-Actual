@@ -11,7 +11,7 @@ public class TextFile {
 	public static void main(String[] args) {
 		String savedText = "";
 		try {
-			BufferedReader read = new BufferedReader(new FileReader("src/intro_to_file_io/test.txt"));
+			BufferedReader read = new BufferedReader(new FileReader("listFile"));
 			String line = read.readLine();
 			RandomAccessFile test = new RandomAccessFile(new File("src/intro_to_file_io/test.txt"), "rw");
 			String copyrightedMessage = "//not copyrighted because it's trash\n";
