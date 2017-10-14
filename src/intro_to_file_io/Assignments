@@ -1,9 +1,9 @@
 Study the examples in IntroToFileIO.java. Ask your teacher for any clarification you may need.
 
 1. Write a program that takes a message from the user and saves an encrypted form of that message in a new file. Use any encryption algorithm you choose.
-
+COMPLETED!
 2. Create a separate program that asks for a encrypted file (you can use the JFileChooser) and prints the decrypted version.
-
+COMPLETED!
 3. Create a program that adds a copyright notice to all the .java files in your Level 3 repositories (e.g. //Copyright © 2017 by Bill Jobs)
    It is highly recommend that you test your program thoroughly with junk files before running it on your actual work.
    
