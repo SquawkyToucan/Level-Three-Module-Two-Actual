@@ -1,3 +1,7 @@
+//not copyrighted because it's trash
+
+//not copyrighted because it's trash
+
 package intro_to_file_io;
 
 import java.io.FileWriter;

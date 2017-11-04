@@ -1,27 +1,27 @@
+//not copyrighted because it's trash
+
 package intro_to_file_io;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
 public class Decryption {
-	static String keyToDecryptBy;
+	static String key;
+	static String encryptThis;
+	Decryption(String key) {
+		this.key = key;
+	}
 	public static void main(String[] args) {
-		keyToDecryptBy = JOptionPane.showInputDialog("If you are supposed to have access to this file, you should have access to a key.");
+		Encryption encrypt = new Encryption(JOptionPane.showInputDialog("Please create a jumbler with letters a through z."));
+		System.out.println(findCipher());
+		encryptThis = JOptionPane.showInputDialog("What text would you like to encrypt?");
 		try {
-			BufferedReader read = new BufferedReader(new FileReader("src/intro_to_file_io/Encrypted Result"));
-			try {
-				String textToDecrypt = read.readLine();
-				System.out.println(cipher(textToDecrypt, findCipher()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		} catch (FileNotFoundException e) {
+			FileWriter write = new FileWriter("src/intro_to_file_io/Encrypted Result");
+			write.write(cipher(encryptThis, findCipher()));
+			write.close();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -29,7 +29,7 @@ public class Decryption {
 	public static int findCipher() {
 		//Consonants move the wheel forward by their values.
 		//Vowels move the wheel back.
-		String keyToEncryptBy = keyToDecryptBy.toLowerCase();
+		String keyToEncryptBy = key.toLowerCase();
 		//Consonants: move up by alphabetical value
 		//Vowels: by primes in orders of two
 		/**
@@ -80,14 +80,13 @@ public class Decryption {
 	    String s = "";
 	    int len = msg.length();
 	    for(int x = 0; x < len; x++){
-	        char c = (char)(msg.charAt(x) - shift);
-	        if (c < 'a') {
-	            s += (char)(msg.charAt(x) + (26-shift));
-	        }
-	        else {
-	            s += (char)(msg.charAt(x) - shift);
-	        }
+	        char c = (char)(msg.charAt(x) + shift);
+	        if (c > 'z')
+	            s += (char)(msg.charAt(x) - (26-shift));
+	        else
+	            s += (char)(msg.charAt(x) + shift);
 	    }
 	    return s;
 	}
+
 }
