@@ -1,6 +1,12 @@
 package intro_to_file_io;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -12,7 +18,7 @@ public class ToDoList implements MouseListener {
 	JButton remove = new JButton();
 	JButton save = new JButton();
 	JButton load = new JButton();
-	ArrayList<String> tasks = new ArrayList<String>();
+	static ArrayList<String> tasks = new ArrayList<String>();
 	ToDoList() {
 		//Add to panel
 		panel.add(add);
@@ -36,7 +42,31 @@ public class ToDoList implements MouseListener {
 		load.addMouseListener(this);
 	}
 	public static void main(String[] args) {
+		loadList();
 		new ToDoList();
+	}
+	public static void loadList() {
+		for(int i = 0; i < tasks.size(); i++) {
+			tasks.remove(i);
+		}
+		try {
+			BufferedReader read = new BufferedReader(new FileReader("src/intro_to_file_io/To-Do List"));
+			for(int i = 0; i < 100; i++) {
+				String temp = read.readLine();
+				if(temp != null) {
+					tasks.add(temp);
+				}
+				else {
+					break;
+				}
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -57,7 +87,19 @@ public class ToDoList implements MouseListener {
 			tasks.remove(JOptionPane.showInputDialog("What is the name of the object?"));
 		}
 		if(buttonPressed == save) {
-			
+			try {
+				FileWriter write = new FileWriter(new File("src/intro_to_file_io/To-Do List"));
+				for(int i = 0; i < tasks.size(); i++) {
+					write.write(tasks.get(i)+"\n");
+				}
+				write.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		if(buttonPressed == load) {
+			loadList();
 		}
 	}
 	@Override
