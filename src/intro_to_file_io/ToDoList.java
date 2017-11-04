@@ -50,6 +50,14 @@ public class ToDoList implements MouseListener {
 		if(buttonPressed == add) {
 			String taskToAdd = JOptionPane.showInputDialog("Please type in the task you would like to add.");
 			tasks.add(taskToAdd);
+			System.out.println("Task added: " + taskToAdd);
+		}
+		if(buttonPressed == remove) {
+			JOptionPane.showMessageDialog(null, "Here's a list of all of your items on the to do list:\n" + tasks.toString() + "\nBe prepared to type in the one that is being removed.");
+			tasks.remove(JOptionPane.showInputDialog("What is the name of the object?"));
+		}
+		if(buttonPressed == save) {
+			
 		}
 	}
 	@Override
