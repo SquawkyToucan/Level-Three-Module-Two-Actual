@@ -16,6 +16,7 @@ public class ToDoList implements MouseListener {
 	JPanel panel = new JPanel();
 	JButton add = new JButton();
 	JButton remove = new JButton();
+	JButton viewList = new JButton();
 	JButton save = new JButton();
 	JButton load = new JButton();
 	static ArrayList<String> tasks = new ArrayList<String>();
@@ -25,16 +26,19 @@ public class ToDoList implements MouseListener {
 		panel.add(remove);
 		panel.add(save);
 		panel.add(load);
+		panel.add(viewList);
 		//Set Text
 		add.setText("Add a new task");
 		remove.setText("Remove a task");
 		save.setText("Save your to-do list");
 		load.setText("Load a to-do list");
+		viewList.setText("View the to-do list");
 		//Frame
 		frame.add(panel);
 		frame.setVisible(true);
 		frame.pack();
 		//Add listener
+		viewList.addMouseListener(this);
 		panel.addMouseListener(this);
 		add.addMouseListener(this);
 		remove.addMouseListener(this);
@@ -43,6 +47,7 @@ public class ToDoList implements MouseListener {
 	}
 	public static void main(String[] args) {
 		loadList();
+		JOptionPane.showMessageDialog(null, tasks.toString());
 		new ToDoList();
 	}
 	public static void loadList() {
@@ -81,6 +86,9 @@ public class ToDoList implements MouseListener {
 			String taskToAdd = JOptionPane.showInputDialog("Please type in the task you would like to add.");
 			tasks.add(taskToAdd);
 			System.out.println("Task added: " + taskToAdd);
+		}
+		if(buttonPressed == viewList) {
+			JOptionPane.showMessageDialog(null, tasks.toString());
 		}
 		if(buttonPressed == remove) {
 			JOptionPane.showMessageDialog(null, "Here's a list of all of your items on the to do list:\n" + tasks.toString() + "\nBe prepared to type in the one that is being removed.");
